@@ -1,0 +1,679 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A70A40211DB5B93500F5441A /* PredictiveTrimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A401E1DB5B93500F5441A /* PredictiveTrimViewController.swift */; };
+		A70A40221DB5B93500F5441A /* RandomTrimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A401F1DB5B93500F5441A /* RandomTrimViewController.swift */; };
+		A70A40231DB5B93500F5441A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A40201DB5B93500F5441A /* MainViewController.swift */; };
+		A70A40251DB5B97F00F5441A /* TrimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A40241DB5B97F00F5441A /* TrimViewController.swift */; };
+		A70A402C1DB5BF9500F5441A /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A40291DB5BF9500F5441A /* BlockView.swift */; };
+		A70A402D1DB5BF9500F5441A /* DropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A402A1DB5BF9500F5441A /* DropImageView.swift */; };
+		A70A402E1DB5BF9500F5441A /* DropTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A402B1DB5BF9500F5441A /* DropTextField.swift */; };
+		A70A40301DB5BF9E00F5441A /* BlockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70A402F1DB5BF9E00F5441A /* BlockView.xib */; };
+		A70A40751DB867A300F5441A /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A40731DB867A300F5441A /* Keys.swift */; };
+		A70A40761DB867A300F5441A /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A40741DB867A300F5441A /* Util.swift */; };
+		A70A40971DB8BDA900F5441A /* svm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A70A40921DB8BDA900F5441A /* svm.cpp */; };
+		A70A409A1DB8BDCB00F5441A /* svm-brdg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A70A40981DB8BDCB00F5441A /* svm-brdg.cpp */; };
+		A70A409C1DB8C96B00F5441A /* SVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A409B1DB8C96B00F5441A /* SVMTests.swift */; };
+		A72709331DDAF21E0077C1D8 /* EasyImagy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A727092D1DDAF2050077C1D8 /* EasyImagy.framework */; };
+		A72709341DDAF21E0077C1D8 /* EasyImagy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A727092D1DDAF2050077C1D8 /* EasyImagy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A72709351DDAF21E0077C1D8 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A727092E1DDAF2050077C1D8 /* RxCocoa.framework */; };
+		A72709361DDAF21E0077C1D8 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A727092E1DDAF2050077C1D8 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A72709371DDAF21E0077C1D8 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A727092F1DDAF2050077C1D8 /* RxSwift.framework */; };
+		A72709381DDAF21E0077C1D8 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A727092F1DDAF2050077C1D8 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A77FD48A1DAF5A420003E9A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FD4891DAF5A420003E9A3 /* AppDelegate.swift */; };
+		A77FD48E1DAF5A420003E9A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A77FD48D1DAF5A420003E9A3 /* Assets.xcassets */; };
+		A77FD4911DAF5A420003E9A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A77FD48F1DAF5A420003E9A3 /* Main.storyboard */; };
+		A77FD49C1DAF5A420003E9A3 /* ImageTrimmerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FD49B1DAF5A420003E9A3 /* ImageTrimmerTests.swift */; };
+		A77FD4A71DAF5A420003E9A3 /* ImageTrimmerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FD4A61DAF5A420003E9A3 /* ImageTrimmerUITests.swift */; };
+		A7F196771DBD97260007B51A /* ScalableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F196761DBD97260007B51A /* ScalableImageView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A77FD4981DAF5A420003E9A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A77FD47E1DAF5A410003E9A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A77FD4851DAF5A420003E9A3;
+			remoteInfo = ImageTrimmer;
+		};
+		A77FD4A31DAF5A420003E9A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A77FD47E1DAF5A410003E9A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A77FD4851DAF5A420003E9A3;
+			remoteInfo = ImageTrimmer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A77FD4FD1DB07AC10003E9A3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A72709361DDAF21E0077C1D8 /* RxCocoa.framework in Embed Frameworks */,
+				A72709341DDAF21E0077C1D8 /* EasyImagy.framework in Embed Frameworks */,
+				A72709381DDAF21E0077C1D8 /* RxSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A70A401E1DB5B93500F5441A /* PredictiveTrimViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictiveTrimViewController.swift; sourceTree = "<group>"; };
+		A70A401F1DB5B93500F5441A /* RandomTrimViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomTrimViewController.swift; sourceTree = "<group>"; };
+		A70A40201DB5B93500F5441A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A70A40241DB5B97F00F5441A /* TrimViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrimViewController.swift; sourceTree = "<group>"; };
+		A70A40291DB5BF9500F5441A /* BlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
+		A70A402A1DB5BF9500F5441A /* DropImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropImageView.swift; sourceTree = "<group>"; };
+		A70A402B1DB5BF9500F5441A /* DropTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropTextField.swift; sourceTree = "<group>"; };
+		A70A402F1DB5BF9E00F5441A /* BlockView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BlockView.xib; sourceTree = "<group>"; };
+		A70A40731DB867A300F5441A /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		A70A40741DB867A300F5441A /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		A70A408E1DB8BDA800F5441A /* ImageTrimmer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ImageTrimmer-Bridging-Header.h"; path = "libsvm/ImageTrimmer-Bridging-Header.h"; sourceTree = "<group>"; };
+		A70A40921DB8BDA900F5441A /* svm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = svm.cpp; sourceTree = "<group>"; };
+		A70A40931DB8BDA900F5441A /* svm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svm.h; sourceTree = "<group>"; };
+		A70A40981DB8BDCB00F5441A /* svm-brdg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "svm-brdg.cpp"; sourceTree = "<group>"; };
+		A70A40991DB8BDCB00F5441A /* svm-brdg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "svm-brdg.h"; sourceTree = "<group>"; };
+		A70A409B1DB8C96B00F5441A /* SVMTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVMTests.swift; sourceTree = "<group>"; };
+		A727092D1DDAF2050077C1D8 /* EasyImagy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyImagy.framework; path = "../../../../../../../../Desktop/t-ae/ImageTrimmer/Carthage/Build/Mac/EasyImagy.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A727092E1DDAF2050077C1D8 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = "../../../../../../../../Desktop/t-ae/ImageTrimmer/Carthage/Build/Mac/RxCocoa.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A727092F1DDAF2050077C1D8 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = "../../../../../../../../Desktop/t-ae/ImageTrimmer/Carthage/Build/Mac/RxSwift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A77FD4861DAF5A420003E9A3 /* ImageTrimmer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageTrimmer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A77FD4891DAF5A420003E9A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A77FD48D1DAF5A420003E9A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A77FD4901DAF5A420003E9A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A77FD4921DAF5A420003E9A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A77FD4971DAF5A420003E9A3 /* ImageTrimmerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageTrimmerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A77FD49B1DAF5A420003E9A3 /* ImageTrimmerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTrimmerTests.swift; sourceTree = "<group>"; };
+		A77FD49D1DAF5A420003E9A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A77FD4A21DAF5A420003E9A3 /* ImageTrimmerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageTrimmerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A77FD4A61DAF5A420003E9A3 /* ImageTrimmerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTrimmerUITests.swift; sourceTree = "<group>"; };
+		A77FD4A81DAF5A420003E9A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7F196761DBD97260007B51A /* ScalableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalableImageView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A77FD4831DAF5A420003E9A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A72709351DDAF21E0077C1D8 /* RxCocoa.framework in Frameworks */,
+				A72709331DDAF21E0077C1D8 /* EasyImagy.framework in Frameworks */,
+				A72709371DDAF21E0077C1D8 /* RxSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A77FD4941DAF5A420003E9A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A77FD49F1DAF5A420003E9A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A70A401D1DB5B93500F5441A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A70A40201DB5B93500F5441A /* MainViewController.swift */,
+				A70A40241DB5B97F00F5441A /* TrimViewController.swift */,
+				A70A401E1DB5B93500F5441A /* PredictiveTrimViewController.swift */,
+				A70A401F1DB5B93500F5441A /* RandomTrimViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A70A40281DB5BF9500F5441A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A70A40291DB5BF9500F5441A /* BlockView.swift */,
+				A70A402F1DB5BF9E00F5441A /* BlockView.xib */,
+				A7F196761DBD97260007B51A /* ScalableImageView.swift */,
+				A70A402A1DB5BF9500F5441A /* DropImageView.swift */,
+				A70A402B1DB5BF9500F5441A /* DropTextField.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A70A40331DB6177C00F5441A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A727092D1DDAF2050077C1D8 /* EasyImagy.framework */,
+				A727092E1DDAF2050077C1D8 /* RxCocoa.framework */,
+				A727092F1DDAF2050077C1D8 /* RxSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A70A40721DB867A300F5441A /* etc */ = {
+			isa = PBXGroup;
+			children = (
+				A70A40731DB867A300F5441A /* Keys.swift */,
+				A70A40741DB867A300F5441A /* Util.swift */,
+				A70A40991DB8BDCB00F5441A /* svm-brdg.h */,
+				A70A40981DB8BDCB00F5441A /* svm-brdg.cpp */,
+			);
+			path = etc;
+			sourceTree = "<group>";
+		};
+		A70A408D1DB8BD8500F5441A /* libsvm */ = {
+			isa = PBXGroup;
+			children = (
+				A70A40931DB8BDA900F5441A /* svm.h */,
+				A70A40921DB8BDA900F5441A /* svm.cpp */,
+			);
+			path = libsvm;
+			sourceTree = "<group>";
+		};
+		A77FD47D1DAF5A410003E9A3 = {
+			isa = PBXGroup;
+			children = (
+				A70A40331DB6177C00F5441A /* Frameworks */,
+				A77FD4881DAF5A420003E9A3 /* ImageTrimmer */,
+				A77FD49A1DAF5A420003E9A3 /* ImageTrimmerTests */,
+				A77FD4A51DAF5A420003E9A3 /* ImageTrimmerUITests */,
+				A77FD4871DAF5A420003E9A3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A77FD4871DAF5A420003E9A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A77FD4861DAF5A420003E9A3 /* ImageTrimmer.app */,
+				A77FD4971DAF5A420003E9A3 /* ImageTrimmerTests.xctest */,
+				A77FD4A21DAF5A420003E9A3 /* ImageTrimmerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A77FD4881DAF5A420003E9A3 /* ImageTrimmer */ = {
+			isa = PBXGroup;
+			children = (
+				A70A40281DB5BF9500F5441A /* Components */,
+				A70A401D1DB5B93500F5441A /* ViewControllers */,
+				A70A408D1DB8BD8500F5441A /* libsvm */,
+				A70A40721DB867A300F5441A /* etc */,
+				A77FD4891DAF5A420003E9A3 /* AppDelegate.swift */,
+				A70A408E1DB8BDA800F5441A /* ImageTrimmer-Bridging-Header.h */,
+				A77FD48D1DAF5A420003E9A3 /* Assets.xcassets */,
+				A77FD48F1DAF5A420003E9A3 /* Main.storyboard */,
+				A77FD4921DAF5A420003E9A3 /* Info.plist */,
+			);
+			path = ImageTrimmer;
+			sourceTree = "<group>";
+		};
+		A77FD49A1DAF5A420003E9A3 /* ImageTrimmerTests */ = {
+			isa = PBXGroup;
+			children = (
+				A77FD49B1DAF5A420003E9A3 /* ImageTrimmerTests.swift */,
+				A70A409B1DB8C96B00F5441A /* SVMTests.swift */,
+				A77FD49D1DAF5A420003E9A3 /* Info.plist */,
+			);
+			path = ImageTrimmerTests;
+			sourceTree = "<group>";
+		};
+		A77FD4A51DAF5A420003E9A3 /* ImageTrimmerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A77FD4A61DAF5A420003E9A3 /* ImageTrimmerUITests.swift */,
+				A77FD4A81DAF5A420003E9A3 /* Info.plist */,
+			);
+			path = ImageTrimmerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A77FD4851DAF5A420003E9A3 /* ImageTrimmer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A77FD4AB1DAF5A420003E9A3 /* Build configuration list for PBXNativeTarget "ImageTrimmer" */;
+			buildPhases = (
+				A77FD4821DAF5A420003E9A3 /* Sources */,
+				A77FD4831DAF5A420003E9A3 /* Frameworks */,
+				A77FD4841DAF5A420003E9A3 /* Resources */,
+				A77FD4FD1DB07AC10003E9A3 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ImageTrimmer;
+			productName = ImageTrimmer;
+			productReference = A77FD4861DAF5A420003E9A3 /* ImageTrimmer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A77FD4961DAF5A420003E9A3 /* ImageTrimmerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A77FD4AE1DAF5A420003E9A3 /* Build configuration list for PBXNativeTarget "ImageTrimmerTests" */;
+			buildPhases = (
+				A77FD4931DAF5A420003E9A3 /* Sources */,
+				A77FD4941DAF5A420003E9A3 /* Frameworks */,
+				A77FD4951DAF5A420003E9A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A77FD4991DAF5A420003E9A3 /* PBXTargetDependency */,
+			);
+			name = ImageTrimmerTests;
+			productName = ImageTrimmerTests;
+			productReference = A77FD4971DAF5A420003E9A3 /* ImageTrimmerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A77FD4A11DAF5A420003E9A3 /* ImageTrimmerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A77FD4B11DAF5A420003E9A3 /* Build configuration list for PBXNativeTarget "ImageTrimmerUITests" */;
+			buildPhases = (
+				A77FD49E1DAF5A420003E9A3 /* Sources */,
+				A77FD49F1DAF5A420003E9A3 /* Frameworks */,
+				A77FD4A01DAF5A420003E9A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A77FD4A41DAF5A420003E9A3 /* PBXTargetDependency */,
+			);
+			name = ImageTrimmerUITests;
+			productName = ImageTrimmerUITests;
+			productReference = A77FD4A21DAF5A420003E9A3 /* ImageTrimmerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A77FD47E1DAF5A410003E9A3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Araki Takehiro";
+				TargetAttributes = {
+					A77FD4851DAF5A420003E9A3 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = AX6P4U3X2R;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+					};
+					A77FD4961DAF5A420003E9A3 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = AX6P4U3X2R;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A77FD4851DAF5A420003E9A3;
+					};
+					A77FD4A11DAF5A420003E9A3 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = AX6P4U3X2R;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A77FD4851DAF5A420003E9A3;
+					};
+				};
+			};
+			buildConfigurationList = A77FD4811DAF5A420003E9A3 /* Build configuration list for PBXProject "ImageTrimmer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A77FD47D1DAF5A410003E9A3;
+			productRefGroup = A77FD4871DAF5A420003E9A3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A77FD4851DAF5A420003E9A3 /* ImageTrimmer */,
+				A77FD4961DAF5A420003E9A3 /* ImageTrimmerTests */,
+				A77FD4A11DAF5A420003E9A3 /* ImageTrimmerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A77FD4841DAF5A420003E9A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A77FD48E1DAF5A420003E9A3 /* Assets.xcassets in Resources */,
+				A77FD4911DAF5A420003E9A3 /* Main.storyboard in Resources */,
+				A70A40301DB5BF9E00F5441A /* BlockView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A77FD4951DAF5A420003E9A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A77FD4A01DAF5A420003E9A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A77FD4821DAF5A420003E9A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A70A402D1DB5BF9500F5441A /* DropImageView.swift in Sources */,
+				A77FD48A1DAF5A420003E9A3 /* AppDelegate.swift in Sources */,
+				A70A40231DB5B93500F5441A /* MainViewController.swift in Sources */,
+				A70A40751DB867A300F5441A /* Keys.swift in Sources */,
+				A70A40211DB5B93500F5441A /* PredictiveTrimViewController.swift in Sources */,
+				A70A409A1DB8BDCB00F5441A /* svm-brdg.cpp in Sources */,
+				A70A402C1DB5BF9500F5441A /* BlockView.swift in Sources */,
+				A70A40761DB867A300F5441A /* Util.swift in Sources */,
+				A70A40251DB5B97F00F5441A /* TrimViewController.swift in Sources */,
+				A70A40971DB8BDA900F5441A /* svm.cpp in Sources */,
+				A7F196771DBD97260007B51A /* ScalableImageView.swift in Sources */,
+				A70A40221DB5B93500F5441A /* RandomTrimViewController.swift in Sources */,
+				A70A402E1DB5BF9500F5441A /* DropTextField.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A77FD4931DAF5A420003E9A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A70A409C1DB8C96B00F5441A /* SVMTests.swift in Sources */,
+				A77FD49C1DAF5A420003E9A3 /* ImageTrimmerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A77FD49E1DAF5A420003E9A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A77FD4A71DAF5A420003E9A3 /* ImageTrimmerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A77FD4991DAF5A420003E9A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A77FD4851DAF5A420003E9A3 /* ImageTrimmer */;
+			targetProxy = A77FD4981DAF5A420003E9A3 /* PBXContainerItemProxy */;
+		};
+		A77FD4A41DAF5A420003E9A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A77FD4851DAF5A420003E9A3 /* ImageTrimmer */;
+			targetProxy = A77FD4A31DAF5A420003E9A3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A77FD48F1DAF5A420003E9A3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A77FD4901DAF5A420003E9A3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A77FD4A91DAF5A420003E9A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A77FD4AA1DAF5A420003E9A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		A77FD4AC1DAF5A420003E9A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = AX6P4U3X2R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = ImageTrimmer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.qoncept.ImageTrimmer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ImageTrimmer/libsvm/ImageTrimmer-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		A77FD4AD1DAF5A420003E9A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = AX6P4U3X2R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = ImageTrimmer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.qoncept.ImageTrimmer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ImageTrimmer/libsvm/ImageTrimmer-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		A77FD4AF1DAF5A420003E9A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = AX6P4U3X2R;
+				INFOPLIST_FILE = ImageTrimmerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.qoncept.ImageTrimmerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ImageTrimmer.app/Contents/MacOS/ImageTrimmer";
+			};
+			name = Debug;
+		};
+		A77FD4B01DAF5A420003E9A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = AX6P4U3X2R;
+				INFOPLIST_FILE = ImageTrimmerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.qoncept.ImageTrimmerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ImageTrimmer.app/Contents/MacOS/ImageTrimmer";
+			};
+			name = Release;
+		};
+		A77FD4B21DAF5A420003E9A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = AX6P4U3X2R;
+				INFOPLIST_FILE = ImageTrimmerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.qoncept.ImageTrimmerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = ImageTrimmer;
+			};
+			name = Debug;
+		};
+		A77FD4B31DAF5A420003E9A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = AX6P4U3X2R;
+				INFOPLIST_FILE = ImageTrimmerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.qoncept.ImageTrimmerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = ImageTrimmer;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A77FD4811DAF5A420003E9A3 /* Build configuration list for PBXProject "ImageTrimmer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A77FD4A91DAF5A420003E9A3 /* Debug */,
+				A77FD4AA1DAF5A420003E9A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A77FD4AB1DAF5A420003E9A3 /* Build configuration list for PBXNativeTarget "ImageTrimmer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A77FD4AC1DAF5A420003E9A3 /* Debug */,
+				A77FD4AD1DAF5A420003E9A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A77FD4AE1DAF5A420003E9A3 /* Build configuration list for PBXNativeTarget "ImageTrimmerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A77FD4AF1DAF5A420003E9A3 /* Debug */,
+				A77FD4B01DAF5A420003E9A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A77FD4B11DAF5A420003E9A3 /* Build configuration list for PBXNativeTarget "ImageTrimmerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A77FD4B21DAF5A420003E9A3 /* Debug */,
+				A77FD4B31DAF5A420003E9A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A77FD47E1DAF5A410003E9A3 /* Project object */;
+}
