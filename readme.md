@@ -53,7 +53,7 @@ Requires [Carthage](https://github.com/Carthage/Carthage).
 git clone https://github.com/t-ae/ImageTrimmer.git
 cd ImageTrimmer
 carthage bootstrap --platform macOS
-open ImageTrimmer.xcproj
+open ImageTrimmer.xcodeproj
 ```
 
 ## License
