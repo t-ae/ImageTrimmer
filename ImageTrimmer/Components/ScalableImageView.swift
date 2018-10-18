@@ -14,7 +14,7 @@ class ScalableImageView: NSImageView {
         
     }
     
-    func onZoom(_ recognizer: NSMagnificationGestureRecognizer) {
+    @objc func onZoom(_ recognizer: NSMagnificationGestureRecognizer) {
         let magnification = recognizer.magnification
         let scaleFactor = (magnification >= 0.0) ? (1.0 + magnification) : 1.0 / (1.0 - magnification)
         

@@ -1,14 +1,13 @@
-
 import Foundation
 import Cocoa
-import EasyImagy
 import RxSwift
+import Swim
 
 class RandomTrimViewController : TrimViewController {
     
     @IBOutlet weak var imageView: NSImageView!
     
-    override func bind(image: Image<RGBA>!,
+    override func bind(image: Image<RGBA, UInt8>!,
                        x: Variable<Int>,
                        y: Variable<Int>,
                        width: Int,
@@ -39,9 +38,9 @@ class RandomTrimViewController : TrimViewController {
         let maxY = UInt32(image.height) - UInt32(height)
         let y = Int(arc4random_uniform(maxY))
         
-        let trimmed = Image(image[x..<x+width, y..<y+height])
+        let trimmed = image[x..<x+width, y..<y+height]
         
-        imageView.image = trimmed.nsImage
+        imageView.image = trimmed.nsImage()
         self.x.value = x
         self.y.value = y
     }

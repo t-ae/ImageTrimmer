@@ -1,12 +1,11 @@
-
 import Foundation
 import Cocoa
-import EasyImagy
 import RxSwift
+import Swim
 
 class TrimViewController: NSViewController {
     
-    private(set) var image: Image<RGBA>!
+    private(set) var image: Image<RGBA, UInt8>!
     
     private(set) var x: Variable<Int>!
     private(set) var y: Variable<Int>!
@@ -21,10 +20,10 @@ class TrimViewController: NSViewController {
     private(set) var negativeFileNumber: Variable<Int>!
     
     override func viewDidDisappear() {
-        NSApplication.shared().stopModal()
+        NSApplication.shared.stopModal()
     }
     
-    func bind(image: Image<RGBA>!,
+    func bind(image: Image<RGBA, UInt8>!,
               x: Variable<Int>,
               y: Variable<Int>,
               width: Int,

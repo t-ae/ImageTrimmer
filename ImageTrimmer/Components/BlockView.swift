@@ -28,7 +28,7 @@ class BlockView : NSView {
         self.animator().isHidden = true
     }
     
-    func onClick() {
+    @objc func onClick() {
         onClickListener?()
     }
 }

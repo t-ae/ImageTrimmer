@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBAction func onSelectAcknowledgements(_ sender: AnyObject) {
         let url = URL(string: "https://github.com/t-ae/ImageTrimmer/blob/master/Acknowledgements.md")!
-        NSWorkspace.shared().open(url)
+        NSWorkspace.shared.open(url)
     }
 }
 

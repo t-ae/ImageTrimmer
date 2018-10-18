@@ -1,8 +1,7 @@
-
 import Foundation
 import Cocoa
-import EasyImagy
 import RxSwift
+import Swim
 
 func saveImage(image: NSImage, directory: String, fileNumber: Int) -> Bool {
     let directoryUrl = URL(fileURLWithPath: directory, isDirectory: true)
@@ -10,7 +9,8 @@ func saveImage(image: NSImage, directory: String, fileNumber: Int) -> Bool {
     
     let data = image.tiffRepresentation!
     let b = NSBitmapImageRep.imageReps(with: data).first! as! NSBitmapImageRep
-    let pngData = b.representation(using: NSPNGFileType, properties: [:])!
+    let pngData = b.representation(using: NSBitmapImageRep.FileType.png, properties: [:])!
+    
     
     do {
         try pngData.write(to: url, options: Data.WritingOptions.atomic)
@@ -26,6 +26,7 @@ enum SelectDirectoryResult {
     case ok(URL?)
     case cancel
 }
+
 func selectDirectory(title: String? = nil, url: URL? = nil) -> Observable<SelectDirectoryResult> {
     return Observable.create { observer in
         let panel = NSOpenPanel()
@@ -37,11 +38,10 @@ func selectDirectory(title: String? = nil, url: URL? = nil) -> Observable<Select
         panel.directoryURL = url
         
         panel.begin() { result in
-            
             switch result {
-            case NSFileHandlingPanelOKButton:
+            case NSApplication.ModalResponse.OK:
                 observer.onNext(.ok(panel.urls.first))
-            case NSFileHandlingPanelCancelButton:
+            case NSApplication.ModalResponse.cancel:
                 observer.onNext(.cancel)
             default:
                 fatalError("never reaches here.")
@@ -52,16 +52,6 @@ func selectDirectory(title: String? = nil, url: URL? = nil) -> Observable<Select
             panel.close()
         }
     }
-}
-
-extension Image where Pixel == RGBA {
-    func toGrayImage() -> Image<Double> {
-        return self.map { (Double($0.gray) / 255.0 - 0.5) * 2 }
-    }
-}
-
-func loadGrayImage(url: URL) -> Image<Double>? {
-    return Image<RGBA>(contentsOfFile: url.path)?.toGrayImage()
 }
 
 extension NSImage {

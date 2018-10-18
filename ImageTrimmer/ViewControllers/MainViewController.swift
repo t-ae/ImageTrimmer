@@ -1,8 +1,7 @@
-
 import Cocoa
-import EasyImagy
 import RxSwift
 import RxCocoa
+import Swim
 
 class MainViewController: NSViewController {
 
@@ -22,8 +21,10 @@ class MainViewController: NSViewController {
     // size
     private let width = Variable<Int>(30)
     @IBOutlet weak var widthField: NSTextField!
+    @IBOutlet weak var widthStepper: NSStepper!
     private let height = Variable<Int>(30)
     @IBOutlet weak var heightField: NSTextField!
+    @IBOutlet weak var heightStepper: NSStepper!
     
     // directory
     @IBOutlet weak var positiveField: NSTextField!
@@ -52,31 +53,31 @@ class MainViewController: NSViewController {
             }
         }
         
-        NSEvent.addLocalMonitorForEvents(matching: NSKeyDownMask) { ev in
-            guard let char = ev.characters?.characters.first else {
-                return ev
-            }
-            
-            switch char {
-            case Character(UnicodeScalar(NSUpArrowFunctionKey)!):
-                self.y.value -= 1
-            case Character(UnicodeScalar(NSDownArrowFunctionKey)!):
-                self.y.value += 1
-            case Character(UnicodeScalar(NSLeftArrowFunctionKey)!):
-                self.x.value -= 1
-            case Character(UnicodeScalar(NSRightArrowFunctionKey)!):
-                self.x.value += 1
-            default:
-                break
-            }
-            return ev
-        }
+//        NSEvent.addLocalMonitorForEvents(matching: NSKeyDownMask) { ev in
+//            guard let char = ev.characters?.first else {
+//                return ev
+//            }
+//            
+//            switch char {
+//            case Character(UnicodeScalar(NSUpArrowFunctionKey)!):
+//                self.y.value -= 1
+//            case Character(UnicodeScalar(NSDownArrowFunctionKey)!):
+//                self.y.value += 1
+//            case Character(UnicodeScalar(NSLeftArrowFunctionKey)!):
+//                self.x.value -= 1
+//            case Character(UnicodeScalar(NSRightArrowFunctionKey)!):
+//                self.x.value += 1
+//            default:
+//                break
+//            }
+//            return ev
+//        }
         
         
         imageView.onImageLoaded
             .map { _ -> NSImage? in nil }
-            .bindTo(previewImageView.rx.image)
-            .addDisposableTo(disposeBag)
+            .bind(to: previewImageView.rx.image)
+            .disposed(by: disposeBag)
         
         Observable
             .combineLatest(x.asObservable(),
@@ -86,23 +87,23 @@ class MainViewController: NSViewController {
             { _x, _y, _width, _height -> NSImage? in
                 return welf?.trimImage(x: _x, y: _y, width: _width, height: _height)
             }
-            .bindTo(previewImageView.rx.image)
-            .addDisposableTo(disposeBag)
+            .bind(to: previewImageView.rx.image)
+            .disposed(by: disposeBag)
 
         Observable
             .combineLatest(x.asObservable(),
                            y.asObservable(),
                            width.asObservable(),
                            height.asObservable()){ ($0, $1, $2, $3) }
-            .bindTo(imageView.trimRect)
-            .addDisposableTo(disposeBag)
+            .bind(to: imageView.trimRect)
+            .disposed(by: disposeBag)
         
         
         imageView.onImageLoaded
             .subscribe(onNext: { file in
                 self.view.window?.title = file
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         // variable to control
         x.asObservable()
@@ -110,77 +111,89 @@ class MainViewController: NSViewController {
                 welf?.xField.integerValue = x
                 welf?.xStepper.integerValue = x
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         y.asObservable()
             .subscribe(onNext: { y in
                 welf?.yField.integerValue = y
                 welf?.yStepper.integerValue = y
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         width.asObservable()
-            .do(onNext: { w in
+            .subscribe(onNext: { w in
                 let ud = UserDefaults.standard
                 ud.set(w, forKey: Keys.UserDefaults.widthKey)
+                
+                welf?.widthField.integerValue = w
+                welf?.widthStepper.integerValue = w
             })
-            .map(intToStr)
-            .bindTo(widthField.rx.text)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         height.asObservable()
-            .do(onNext: { h in
+            .subscribe(onNext: { h in
                 let ud = UserDefaults.standard
                 ud.set(h, forKey: Keys.UserDefaults.heightKey)
+                
+                welf?.heightField.integerValue = h
+                welf?.heightStepper.integerValue = h
             })
-            .map(intToStr)
-            .bindTo(heightField.rx.text)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         positiveFileNumber.asObservable()
             .map(intToStr)
-            .bindTo(positiveFileNameField.rx.text)
-            .addDisposableTo(disposeBag)
+            .bind(to: positiveFileNameField.rx.text)
+            .disposed(by: disposeBag)
         negativeFileNumber.asObservable()
             .map(intToStr)
-            .bindTo(negativeFileNameField.rx.text)
-            .addDisposableTo(disposeBag)
+            .bind(to: negativeFileNameField.rx.text)
+            .disposed(by: disposeBag)
         
         // control to variable
         xField.rx.text
             .filterNil()
             .flatMap(strToObservableInt)
-            .bindTo(x)
-            .addDisposableTo(disposeBag)
+            .bind(to: x)
+            .disposed(by: disposeBag)
         yField.rx.text
             .filterNil()
             .flatMap(strToObservableInt)
-            .bindTo(y)
-            .addDisposableTo(disposeBag)
+            .bind(to: y)
+            .disposed(by: disposeBag)
         xStepper.rx.controlEvent
             .map { welf!.xStepper.integerValue }
-            .bindTo(x)
-            .addDisposableTo(disposeBag)
+            .bind(to: x)
+            .disposed(by: disposeBag)
         yStepper.rx.controlEvent
             .map { welf!.yStepper.integerValue }
-            .bindTo(y)
-            .addDisposableTo(disposeBag)
+            .bind(to: y)
+            .disposed(by: disposeBag)
+        
         widthField.rx.text
             .filterNil()
             .flatMap(strToObservableInt)
-            .bindTo(width)
-            .addDisposableTo(disposeBag)
+            .bind(to: width)
+            .disposed(by: disposeBag)
         heightField.rx.text
             .filterNil()
             .flatMap(strToObservableInt)
-            .bindTo(height)
-            .addDisposableTo(disposeBag)
+            .bind(to: height)
+            .disposed(by: disposeBag)
+        widthStepper.rx.controlEvent
+            .map { welf!.widthStepper.integerValue }
+            .bind(to: width)
+            .disposed(by: disposeBag)
+        heightStepper.rx.controlEvent
+            .map { welf!.heightStepper.integerValue }
+            .bind(to: height)
+            .disposed(by: disposeBag)
+        
         positiveFileNameField.rx.text
             .filterNil()
             .flatMap(strToObservableInt)
-            .bindTo(positiveFileNumber)
-            .addDisposableTo(disposeBag)
+            .bind(to: positiveFileNumber)
+            .disposed(by: disposeBag)
         negativeFileNameField.rx.text
             .filterNil()
             .flatMap(strToObservableInt)
-            .bindTo(negativeFileNumber)
-            .addDisposableTo(disposeBag)
+            .bind(to: negativeFileNumber)
+            .disposed(by: disposeBag)
         
         imageView.onClickPixel
             .do(onNext: { _ in
@@ -190,11 +203,11 @@ class MainViewController: NSViewController {
                 welf?.x.value = x
                 welf?.y.value = y
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     private func trimImage(x: Int, y: Int, width: Int, height: Int) -> NSImage? {
-        guard let image = self.imageView.easyImage else {
+        guard let image = self.imageView.swimImage else {
             return nil
         }
         guard 0<=x && x+width<=image.width && 0<=y && y+height<=image.height else {
@@ -203,8 +216,8 @@ class MainViewController: NSViewController {
         guard width>0 && height>0 else {
             return nil
         }
-        let trim = Image(image[x..<x+width, y..<y+height])
-        return trim.nsImage
+        let trim = image[x..<x+width, y..<y+height]
+        return trim.nsImage()
     }
 
     @IBAction func onPressChangeP(_ sender: AnyObject) {
@@ -228,7 +241,7 @@ class MainViewController: NSViewController {
                     return
                 }
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     @IBAction func onPressTrimP(_ sender: AnyObject) {
@@ -265,82 +278,6 @@ class MainViewController: NSViewController {
         }
     }
     
-    @IBAction func onPressPredButton(_ sender: AnyObject) {
-        guard let nsImage = imageView.image else {
-            showAlert("image is not loaded")
-            return
-        }
-        
-        guard let image = Image<RGBA>(nsImage: nsImage) else {
-            return
-        }
-        
-        let width = self.width.value
-        let height = self.height.value
-        guard width > 0, height > 0 else {
-            showAlert("invalid size: \(width), \(height)")
-            return
-        }
-        
-        let positiveDirectory = self.positiveField.stringValue
-        let negativeDirectory = self.negativeField.stringValue
-        guard !positiveDirectory.isEmpty && !negativeDirectory.isEmpty else {
-            showAlert("invalid directories: \npositive: \(positiveDirectory) \nnegative: \(negativeDirectory)")
-            return
-        }
-        
-        func select(title: String, url: URL? = nil) -> Observable<URL> {
-            return selectDirectory(title: title, url: url)
-                .map{ result in
-                    switch result {
-                    case .ok(let _url):
-                        if let url = _url {
-                            return url
-                        } else {
-                            throw SelectDirectoryAbortedError()
-                        }
-                    default:
-                        throw SelectDirectoryAbortedError()
-                    }
-                }
-        }
-        
-        select(title: "Select directory which contains \"Positive\" images.")
-            .flatMap { url in
-                select(title: "Select directory which contains \"Negative\" images.",
-                       url: url)
-                    .startWith(url)
-            }
-            .toArray()
-            .subscribe { [weak self] event in
-                switch event {
-                case .next(let urls):
-                    let w = self!.storyboard!.instantiateController(withIdentifier: "PredictiveTrim") as! NSWindowController
-                    let vc = w.contentViewController! as! PredictiveTrimViewController
-                    vc.bind(image: image,
-                            x: self!.x,
-                            y: self!.y,
-                            width: width,
-                            height: height,
-                            positiveDirectory: positiveDirectory,
-                            negativeDirectory: negativeDirectory,
-                            positiveFileNumber: self!.positiveFileNumber,
-                            negativeFileNumber: self!.negativeFileNumber,
-                            positiveSupervisorDirectory: urls[0].path,
-                            negativeSupervisorDirectory: urls[1].path)
-                    
-                    NSApplication.shared().runModal(for: w.window!)
-                    w.window?.orderOut(nil)
-                    
-                case .error(let e):
-                    Swift.print("error: \(e)")
-                case .completed:
-                    break
-                }
-            }
-            .addDisposableTo(disposeBag)
-    }
-    
     @IBAction func onPressRandomButton(_ sender: AnyObject) {
         
         guard let nsImage = imageView.image else {
@@ -348,7 +285,7 @@ class MainViewController: NSViewController {
             return
         }
         
-        guard let image = Image<RGBA>(nsImage: nsImage) else {
+        guard let image = Swim.Image<Swim.RGBA, UInt8>(nsImage: nsImage) else {
             return
         }
         
@@ -379,7 +316,7 @@ class MainViewController: NSViewController {
                 positiveFileNumber: self.positiveFileNumber,
                 negativeFileNumber: self.negativeFileNumber)
         
-        NSApplication.shared().runModal(for: w.window!)
+        NSApplication.shared.runModal(for: w.window!)
         w.window?.orderOut(nil)
     }
     

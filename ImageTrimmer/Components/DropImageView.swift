@@ -1,20 +1,19 @@
-
 import Foundation
 import Cocoa
-import EasyImagy
 import RxSwift
+import Swim
 
 class DropImageView : NSView {
     
     private let disposeBag = DisposeBag()
     
-    private(set) var easyImage: Image<RGBA>?
+    private(set) var swimImage: Image<RGBA, UInt8>?
     
     var image: NSImage?
     
-    private var overlay: CALayer!
-    private var imageLayer: CALayer!
-    private var sublayer: CALayer!
+    private let overlay: CALayer = CALayer()
+    private let imageLayer: CALayer = CALayer()
+    private let sublayer: CALayer = CALayer()
     
     private let _onImageLoaded = PublishSubject<String>()
     var onImageLoaded: Observable<String> {
@@ -38,7 +37,9 @@ class DropImageView : NSView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        register(forDraggedTypes: [NSFilenamesPboardType])
+        self.wantsLayer = true
+        
+        registerForDraggedTypes([.fileURL])
         
         let zoomRecog = NSMagnificationGestureRecognizer(target: self, action: #selector(onZoom))
         addGestureRecognizer(zoomRecog)
@@ -49,18 +50,15 @@ class DropImageView : NSView {
         let clickRecog = NSClickGestureRecognizer(target: self, action: #selector(onClick))
         addGestureRecognizer(clickRecog)
         
-        overlay = CALayer()
         overlay.borderColor = CGColor(red: 1, green: 0, blue: 0, alpha: 1)
         overlay.zPosition = 0.001
         overlay.bounds = CGRect(x: 0, y: 0, width: 0, height: 0)
         self.layer!.addSublayer(overlay)
         
-        imageLayer = CALayer()
-        imageLayer.contentsGravity = kCAGravityResizeAspect
+        imageLayer.contentsGravity = CALayerContentsGravity.resizeAspect
         imageLayer.anchorPoint = CGPoint.zero
         self.layer!.addSublayer(imageLayer)
         
-        sublayer = CALayer()
         self.layer!.addSublayer(sublayer)
         
         weak var welf = self
@@ -74,7 +72,7 @@ class DropImageView : NSView {
             .subscribe(onNext: { x, y, width, height in
                 welf?.drawRect(x: x, y: y, width: width, height: height)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
@@ -82,8 +80,8 @@ class DropImageView : NSView {
     }
     
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
+        let files = sender.draggingPasteboard.propertyList(forType: NSPasteboard.PasteboardType(rawValue: "NSFilenamesPboardType")) as! [String]
         
-        let files = sender.draggingPasteboard().propertyList(forType: NSFilenamesPboardType) as! [String]
         
         guard let file = files.first else {
             return false
@@ -108,10 +106,10 @@ class DropImageView : NSView {
         imageLayer.contents = image
         imageLayer.bounds = self.bounds
         
-        self.easyImage = Image<RGBA>(nsImage: image)
+        self.swimImage = Image<RGBA, UInt8>(nsImage: image)
         
         let (scale, _) = getScaleAndImageOrigin(imageSize: image.size)
-        overlay.borderWidth = scale * 0.3
+        overlay.borderWidth = 1 // scale * 1
         
         _onImageLoaded.onNext(file)
         
@@ -126,7 +124,6 @@ class DropImageView : NSView {
         imageLayer.bounds = self.bounds
         onResize.onNext(())
         CATransaction.commit()
-        
     }
     
     override func concludeDragOperation(_ sender: NSDraggingInfo?) {
@@ -138,7 +135,6 @@ class DropImageView : NSView {
     }
     
     private func selectPoint(location: CGPoint) {
-        
         guard let imageSize = self.image?.size else {
             return
         }
@@ -151,7 +147,7 @@ class DropImageView : NSView {
         _onClickPixel.onNext((Int(pt.x), Int(pt.y)))
     }
     
-    func onZoom(_ recognizer: NSMagnificationGestureRecognizer) {
+    @objc func onZoom(_ recognizer: NSMagnificationGestureRecognizer) {
         let magnification = recognizer.magnification
         let scaleFactor = (magnification >= 0.0) ? (1.0 + magnification) : 1.0 / (1.0 - magnification)
         
@@ -165,7 +161,7 @@ class DropImageView : NSView {
     }
 
     
-    func onPan(_ recognizer: NSPanGestureRecognizer) {
+    @objc func onPan(_ recognizer: NSPanGestureRecognizer) {
         
         switch recognizer.state {
         case .began, .changed:
@@ -176,7 +172,7 @@ class DropImageView : NSView {
         }
     }
     
-    func onClick(_ recognizer: NSClickGestureRecognizer) {
+    @objc func onClick(_ recognizer: NSClickGestureRecognizer) {
         let location = recognizer.location(in: self)
         
         selectPoint(location: location)
