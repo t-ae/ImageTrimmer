@@ -53,25 +53,25 @@ class MainViewController: NSViewController {
             }
         }
         
-//        NSEvent.addLocalMonitorForEvents(matching: NSKeyDownMask) { ev in
-//            guard let char = ev.characters?.first else {
-//                return ev
-//            }
-//            
-//            switch char {
-//            case Character(UnicodeScalar(NSUpArrowFunctionKey)!):
-//                self.y.value -= 1
-//            case Character(UnicodeScalar(NSDownArrowFunctionKey)!):
-//                self.y.value += 1
-//            case Character(UnicodeScalar(NSLeftArrowFunctionKey)!):
-//                self.x.value -= 1
-//            case Character(UnicodeScalar(NSRightArrowFunctionKey)!):
-//                self.x.value += 1
-//            default:
-//                break
-//            }
-//            return ev
-//        }
+        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { ev in
+            guard let char = ev.characters?.first else {
+                return ev
+            }
+            
+            switch char {
+            case Character(UnicodeScalar(NSUpArrowFunctionKey)!):
+                self.y.value -= 1
+            case Character(UnicodeScalar(NSDownArrowFunctionKey)!):
+                self.y.value += 1
+            case Character(UnicodeScalar(NSLeftArrowFunctionKey)!):
+                self.x.value -= 1
+            case Character(UnicodeScalar(NSRightArrowFunctionKey)!):
+                self.x.value += 1
+            default:
+                break
+            }
+            return ev
+        }
         
         
         imageView.onImageLoaded
