@@ -109,7 +109,7 @@ class DropImageView : NSView {
         self.swimImage = Image<RGBA, UInt8>(nsImage: image)
         
         let (scale, _) = getScaleAndImageOrigin(imageSize: image.size)
-        overlay.borderWidth = 1 // scale * 1
+        overlay.borderWidth = scale * 3
         
         _onImageLoaded.onNext(file)
         
