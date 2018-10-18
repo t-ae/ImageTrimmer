@@ -12,9 +12,9 @@ Currently, it's specialized for binary classification.
 ### Common
 ![Main Window](./Resources/main.png)
 
-1. Drag and drop image in the upper box.
-1. Set output directories and file numbers(they will increment automatically).
-1. Set width and height.
+1. Drag and drop image onto the upper box.
+1. Set output directories and file numbers to start from.
+1. Set trim width and height.
 
 ### Trim manually
 1. [Common](#common)
