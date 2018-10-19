@@ -99,20 +99,41 @@ class MainViewController: NSViewController {
         chooseDirectory(for: negativeDirectoryField)
     }
     
-    private func chooseDirectory(for field: NSTextField) {
-        
+    private func chooseDirectory(for field: DropTextField) {
         selectDirectory()
-            .subscribe(onNext: { result in
+            .subscribe(onNext: { [weak self] result in
                 switch result {
                 case .ok(let url):
                     if let path = url?.path {
-                        field.stringValue = path
+                        self?.setOutputDirectory(for: field, path: path)
                     }
                 case .cancel:
                     return
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func setOutputDirectory(for field: DropTextField, path: String) {
+        field.stringValue = path
+        
+        // update file number
+        let maxFileNo = FileManager.default.enumerator(atPath: path)?.lazy
+            .compactMap { $0 as? String }
+            .compactMap { $0.split(separator: ".").first }
+            .compactMap { Int($0) }
+            .max()
+        
+        if let maxFileNo = maxFileNo {
+            switch field {
+            case positiveDirectoryField:
+                positiveFileNumber.value = maxFileNo + 1
+            case negativeDirectoryField:
+                negativeFileNumber.value = maxFileNo + 1
+            default:
+                break
+            }
+        }
     }
     
     @IBAction func onPressTrimP(_ sender: AnyObject) {
@@ -202,25 +223,7 @@ extension MainViewController: DropTextFieldDelegate {
             return false
         }
         
-        field.stringValue = file
-        
-        // update file number
-        let maxFileNo = FileManager.default.enumerator(atPath: file)?.lazy
-            .compactMap { $0 as? String }
-            .compactMap { $0.split(separator: ".").first }
-            .compactMap { Int($0) }
-            .max()
-        
-        if let maxFileNo = maxFileNo {
-            switch field {
-            case positiveDirectoryField:
-                positiveFileNumber.value = maxFileNo + 1
-            case negativeDirectoryField:
-                negativeFileNumber.value = maxFileNo + 1
-            default:
-                break
-            }
-        }
+        setOutputDirectory(for: field, path: file)
         
         return true
     }

@@ -110,6 +110,7 @@ class DropImageView : NSView {
         
         let (scale, _) = getScaleAndImageOrigin(imageSize: image.size)
         overlay.borderWidth = scale * 3
+        print(scale)
         
         _onImageLoaded.onNext(file)
         
