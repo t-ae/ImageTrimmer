@@ -395,7 +395,7 @@
                                                         </textField>
                                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZSD-ik-Hdl">
                                                             <rect key="frame" x="100" y="34" width="19" height="27"/>
-                                                            <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="hfp-VE-OOe"/>
+                                                            <stepperCell key="cell" continuous="YES" alignment="left" maxValue="1024" id="hfp-VE-OOe"/>
                                                         </stepper>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s4P-Lg-rof">
                                                             <rect key="frame" x="6" y="9" width="47" height="17"/>
@@ -424,7 +424,7 @@
                                                         </textField>
                                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dya-hp-oqI">
                                                             <rect key="frame" x="100" y="3" width="19" height="27"/>
-                                                            <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="jPP-Tf-AGL"/>
+                                                            <stepperCell key="cell" continuous="YES" alignment="left" maxValue="1024" id="jPP-Tf-AGL"/>
                                                         </stepper>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xCZ-LH-puB">
                                                             <rect key="frame" x="55" y="36" width="48" height="22"/>
@@ -680,9 +680,9 @@
                         <outlet property="heightField" destination="1xp-su-jqm" id="UuI-Uj-PPX"/>
                         <outlet property="heightStepper" destination="dya-hp-oqI" id="30V-Kb-GSk"/>
                         <outlet property="imageView" destination="e1s-VM-WQq" id="TLb-EI-cxH"/>
-                        <outlet property="negativeField" destination="oq8-KP-8T6" id="OdR-te-cBM"/>
+                        <outlet property="negativeDirectoryField" destination="oq8-KP-8T6" id="Yad-eb-Q82"/>
                         <outlet property="negativeFileNameField" destination="Emg-zo-SmM" id="cnr-6X-PeL"/>
-                        <outlet property="positiveField" destination="4g9-bP-4sv" id="Ggx-Gs-hd0"/>
+                        <outlet property="positiveDirectoryField" destination="4g9-bP-4sv" id="k6M-Ai-xzu"/>
                         <outlet property="positiveFileNameField" destination="RFV-xZ-08w" id="x6o-bb-gxv"/>
                         <outlet property="previewImageView" destination="gfn-QC-DUj" id="8WW-LR-J19"/>
                         <outlet property="widthField" destination="xCZ-LH-puB" id="CHU-vi-0Lj"/>

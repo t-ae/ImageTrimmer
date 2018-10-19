@@ -3,6 +3,8 @@ import Cocoa
 
 class DropTextField : NSTextField {
     
+    weak var dropDelegate: DropTextFieldDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -20,8 +22,10 @@ class DropTextField : NSTextField {
             return false
         }
         
-        self.stringValue = file
-        return true
+        return dropDelegate?.dropTextField(self, onFileDropped: file) ?? false
     }
+}
 
+protocol DropTextFieldDelegate: class {
+    func dropTextField(_ field: DropTextField, onFileDropped file: String) -> Bool
 }

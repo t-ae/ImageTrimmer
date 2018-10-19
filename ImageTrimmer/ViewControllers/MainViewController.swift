@@ -27,8 +27,8 @@ class MainViewController: NSViewController {
     @IBOutlet weak var heightStepper: NSStepper!
     
     // directory
-    @IBOutlet weak var positiveField: NSTextField!
-    @IBOutlet weak var negativeField: NSTextField!
+    @IBOutlet weak var positiveDirectoryField: DropTextField!
+    @IBOutlet weak var negativeDirectoryField: DropTextField!
     
     // file No.
     private let positiveFileNumber = Variable<Int>(0)
@@ -38,8 +38,6 @@ class MainViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        weak var welf = self
         
         do {
             let ud = UserDefaults.standard
@@ -73,6 +71,164 @@ class MainViewController: NSViewController {
             return ev
         }
         
+        positiveDirectoryField.dropDelegate = self
+        negativeDirectoryField.dropDelegate = self
+        
+        setupRx()
+    }
+    
+    private func trimImage(x: Int, y: Int, width: Int, height: Int) -> NSImage? {
+        guard let image = self.imageView.swimImage else {
+            return nil
+        }
+        guard 0<=x && x+width<=image.width && 0<=y && y+height<=image.height else {
+            return nil
+        }
+        guard width>0 && height>0 else {
+            return nil
+        }
+        let trim = image[x..<x+width, y..<y+height]
+        return trim.nsImage()
+    }
+
+    @IBAction func onPressChangeP(_ sender: AnyObject) {
+        chooseDirectory(for: positiveDirectoryField)
+    }
+    
+    @IBAction func onPressChangeN(_ sender: AnyObject) {
+        chooseDirectory(for: negativeDirectoryField)
+    }
+    
+    private func chooseDirectory(for field: NSTextField) {
+        
+        selectDirectory()
+            .subscribe(onNext: { result in
+                switch result {
+                case .ok(let url):
+                    if let path = url?.path {
+                        field.stringValue = path
+                    }
+                case .cancel:
+                    return
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    @IBAction func onPressTrimP(_ sender: AnyObject) {
+        guard let image = previewImageView.image else {
+            showAlert("preview is empty")
+            return
+        }
+        let directory = positiveDirectoryField.stringValue
+        
+        guard !directory.isEmpty else {
+            showAlert("directory for positive images is not set")
+            return
+        }
+        
+        if saveImage(image: image, directory: directory, fileNumber: positiveFileNumber.value) {
+            positiveFileNumber.value += 1
+        }
+    }
+    
+    @IBAction func onPressTrimN(_ sender: AnyObject) {
+        guard let image = previewImageView.image else {
+            showAlert("preview is empty")
+            return
+        }
+        let directory = negativeDirectoryField.stringValue
+        
+        guard !directory.isEmpty else {
+            showAlert("directory for negative images is not set")
+            return
+        }
+        
+        if saveImage(image: image, directory: directory, fileNumber: negativeFileNumber.value) {
+            negativeFileNumber.value += 1
+        }
+    }
+    
+    @IBAction func onPressRandomButton(_ sender: AnyObject) {
+        
+        guard let nsImage = imageView.image else {
+            showAlert("image is not loaded")
+            return
+        }
+        
+        guard let image = Swim.Image<Swim.RGBA, UInt8>(nsImage: nsImage) else {
+            return
+        }
+        
+        let width = self.width.value
+        let height = self.height.value
+        guard width > 0, height > 0 else {
+            showAlert("invalid size: \(width), \(height)")
+            return
+        }
+        
+        let positiveDirectory = self.positiveDirectoryField.stringValue
+        let negativeDirectory = self.negativeDirectoryField.stringValue
+        guard !positiveDirectory.isEmpty && !negativeDirectory.isEmpty else {
+            showAlert("invalid directories: \npositive: \(positiveDirectory) \nnegative: \(negativeDirectory)")
+            return
+        }
+        
+        let w = storyboard!.instantiateController(withIdentifier: "RandomTrim") as! NSWindowController
+        
+        let vc = w.contentViewController! as! RandomTrimViewController
+        vc.bind(image: image,
+                x: self.x,
+                y: self.y,
+                width: width,
+                height: height,
+                positiveDirectory: positiveDirectory,
+                negativeDirectory: negativeDirectory,
+                positiveFileNumber: self.positiveFileNumber,
+                negativeFileNumber: self.negativeFileNumber)
+        
+        NSApplication.shared.runModal(for: w.window!)
+        w.window?.orderOut(nil)
+    }
+}
+
+extension MainViewController: DropTextFieldDelegate {
+    func dropTextField(_ field: DropTextField, onFileDropped file: String) -> Bool {
+        var isDir: ObjCBool = false
+        guard FileManager.default.fileExists(atPath: file, isDirectory: &isDir) else {
+            return false
+        }
+        guard isDir.boolValue else {
+            return false
+        }
+        
+        field.stringValue = file
+        
+        // update file number
+        let maxFileNo = FileManager.default.enumerator(atPath: file)?.lazy
+            .compactMap { $0 as? String }
+            .compactMap { $0.split(separator: ".").first }
+            .compactMap { Int($0) }
+            .max()
+        
+        if let maxFileNo = maxFileNo {
+            switch field {
+            case positiveDirectoryField:
+                positiveFileNumber.value = maxFileNo + 1
+            case negativeDirectoryField:
+                negativeFileNumber.value = maxFileNo + 1
+            default:
+                break
+            }
+        }
+        
+        return true
+    }
+}
+
+extension MainViewController {
+    func setupRx() {
+        weak var welf = self
         
         imageView.onImageLoaded
             .map { _ -> NSImage? in nil }
@@ -89,7 +245,7 @@ class MainViewController: NSViewController {
             }
             .bind(to: previewImageView.rx.image)
             .disposed(by: disposeBag)
-
+        
         Observable
             .combineLatest(x.asObservable(),
                            y.asObservable(),
@@ -205,124 +361,4 @@ class MainViewController: NSViewController {
             })
             .disposed(by: disposeBag)
     }
-    
-    private func trimImage(x: Int, y: Int, width: Int, height: Int) -> NSImage? {
-        guard let image = self.imageView.swimImage else {
-            return nil
-        }
-        guard 0<=x && x+width<=image.width && 0<=y && y+height<=image.height else {
-            return nil
-        }
-        guard width>0 && height>0 else {
-            return nil
-        }
-        let trim = image[x..<x+width, y..<y+height]
-        return trim.nsImage()
-    }
-
-    @IBAction func onPressChangeP(_ sender: AnyObject) {
-        chooseDirectory(for: positiveField)
-    }
-    
-    @IBAction func onPressChangeN(_ sender: AnyObject) {
-        chooseDirectory(for: negativeField)
-    }
-    
-    private func chooseDirectory(for field: NSTextField) {
-        
-        selectDirectory()
-            .subscribe(onNext: { result in
-                switch result {
-                case .ok(let url):
-                    if let path = url?.path {
-                        field.stringValue = path
-                    }
-                case .cancel:
-                    return
-                }
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    @IBAction func onPressTrimP(_ sender: AnyObject) {
-        guard let image = previewImageView.image else {
-            showAlert("preview is empty")
-            return
-        }
-        let directory = positiveField.stringValue
-        
-        guard !directory.isEmpty else {
-            showAlert("directory for positive images is not set")
-            return
-        }
-        
-        if saveImage(image: image, directory: directory, fileNumber: positiveFileNumber.value) {
-            positiveFileNumber.value += 1
-        }
-    }
-    
-    @IBAction func onPressTrimN(_ sender: AnyObject) {
-        guard let image = previewImageView.image else {
-            showAlert("preview is empty")
-            return
-        }
-        let directory = negativeField.stringValue
-        
-        guard !directory.isEmpty else {
-            showAlert("directory for negative images is not set")
-            return
-        }
-        
-        if saveImage(image: image, directory: directory, fileNumber: negativeFileNumber.value) {
-            negativeFileNumber.value += 1
-        }
-    }
-    
-    @IBAction func onPressRandomButton(_ sender: AnyObject) {
-        
-        guard let nsImage = imageView.image else {
-            showAlert("image is not loaded")
-            return
-        }
-        
-        guard let image = Swim.Image<Swim.RGBA, UInt8>(nsImage: nsImage) else {
-            return
-        }
-        
-        let width = self.width.value
-        let height = self.height.value
-        guard width > 0, height > 0 else {
-            showAlert("invalid size: \(width), \(height)")
-            return
-        }
-        
-        let positiveDirectory = self.positiveField.stringValue
-        let negativeDirectory = self.negativeField.stringValue
-        guard !positiveDirectory.isEmpty && !negativeDirectory.isEmpty else {
-            showAlert("invalid directories: \npositive: \(positiveDirectory) \nnegative: \(negativeDirectory)")
-            return
-        }
-        
-        let w = storyboard!.instantiateController(withIdentifier: "RandomTrim") as! NSWindowController
-        
-        let vc = w.contentViewController! as! RandomTrimViewController
-        vc.bind(image: image,
-                x: self.x,
-                y: self.y,
-                width: width,
-                height: height,
-                positiveDirectory: positiveDirectory,
-                negativeDirectory: negativeDirectory,
-                positiveFileNumber: self.positiveFileNumber,
-                negativeFileNumber: self.negativeFileNumber)
-        
-        NSApplication.shared.runModal(for: w.window!)
-        w.window?.orderOut(nil)
-    }
-    
-    
-}
-
-private struct SelectDirectoryAbortedError: Error {
-    
 }
