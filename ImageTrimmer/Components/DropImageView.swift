@@ -11,7 +11,7 @@ class DropImageView : NSView {
     
     var image: NSImage?
     
-    private let overlay: CALayer = CALayer()
+    private let overlay: CAShapeLayer = CAShapeLayer()
     private let imageLayer: CALayer = CALayer()
     private let sublayer: CALayer = CALayer()
     
@@ -50,6 +50,7 @@ class DropImageView : NSView {
         let clickRecog = NSClickGestureRecognizer(target: self, action: #selector(onClick))
         addGestureRecognizer(clickRecog)
         
+        overlay.strokeColor = CGColor(red: 1, green: 0, blue: 0, alpha: 1)
         overlay.borderColor = CGColor(red: 1, green: 0, blue: 0, alpha: 1)
         overlay.zPosition = 0.001
         overlay.bounds = CGRect(x: 0, y: 0, width: 0, height: 0)
@@ -109,8 +110,13 @@ class DropImageView : NSView {
         self.swimImage = Image<RGBA, UInt8>(nsImage: image)
         
         let (scale, _) = getScaleAndImageOrigin(imageSize: image.size)
-        overlay.borderWidth = scale * 3
-        print(scale)
+        if scale > 1 {
+            overlay.borderWidth = 0.5
+            overlay.lineWidth = 0.5
+        } else {
+            overlay.borderWidth = scale * 3
+            overlay.lineWidth = scale * 3
+        }
         
         _onImageLoaded.onNext(file)
         
@@ -182,7 +188,6 @@ class DropImageView : NSView {
     private func drawRect(x: Int, y: Int, width: Int, height: Int) {
         
         guard let imageSize = self.image?.size else {
-//            Swift.print("image is nil")
             return
         }
         
@@ -199,6 +204,14 @@ class DropImageView : NSView {
         let w = scale*CGFloat(width)
         let h = scale*CGFloat(height)
         overlay.bounds = CGRect(x: 0, y: 0, width: w, height: h)
+        
+        let path = CGMutablePath()
+        path.move(to: CGPoint.zero)
+        path.addLine(to: CGPoint(x: w, y: h))
+        path.move(to: CGPoint(x: w, y: 0))
+        path.addLine(to: CGPoint(x: 0, y: h))
+        overlay.path = path
+        
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         overlay.position = inSublayer + CGPoint(x: w/2, y: h/2)

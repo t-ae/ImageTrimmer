@@ -56,17 +56,30 @@ class MainViewController: NSViewController {
                 return ev
             }
             
-            switch char {
-            case Character(UnicodeScalar(NSUpArrowFunctionKey)!):
-                self.y.value -= 1
-            case Character(UnicodeScalar(NSDownArrowFunctionKey)!):
-                self.y.value += 1
-            case Character(UnicodeScalar(NSLeftArrowFunctionKey)!):
-                self.x.value -= 1
-            case Character(UnicodeScalar(NSRightArrowFunctionKey)!):
-                self.x.value += 1
-            default:
-                break
+            if ev.modifierFlags.contains(NSEvent.ModifierFlags.command) {
+                switch char {
+                case Character(UnicodeScalar(NSUpArrowFunctionKey)!):
+                    self.width.value += 1
+                    self.height.value += 1
+                case Character(UnicodeScalar(NSDownArrowFunctionKey)!):
+                    self.width.value -= 1
+                    self.height.value -= 1
+                default:
+                    break
+                }
+            } else {
+                switch char {
+                case Character(UnicodeScalar(NSUpArrowFunctionKey)!):
+                    self.y.value -= 1
+                case Character(UnicodeScalar(NSDownArrowFunctionKey)!):
+                    self.y.value += 1
+                case Character(UnicodeScalar(NSLeftArrowFunctionKey)!):
+                    self.x.value -= 1
+                case Character(UnicodeScalar(NSRightArrowFunctionKey)!):
+                    self.x.value += 1
+                default:
+                    break
+                }
             }
             return ev
         }
