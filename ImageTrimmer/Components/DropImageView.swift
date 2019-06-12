@@ -1,6 +1,7 @@
 import Foundation
 import Cocoa
 import RxSwift
+import RxCocoa
 import Swim
 
 class DropImageView : NSView {
@@ -26,7 +27,7 @@ class DropImageView : NSView {
     var onClickPixel: Observable<(Int, Int)> {
         return _onClickPixel
     }
-    
+    let frameColor = BehaviorRelay<CGColor>(value: CGColor(red: 1, green: 0, blue: 0, alpha: 1))
     let trimRect = ReplaySubject<(Int, Int, Int, Int)>.create(bufferSize: 1)
     
     // make origin left-top
@@ -50,8 +51,8 @@ class DropImageView : NSView {
         let clickRecog = NSClickGestureRecognizer(target: self, action: #selector(onClick))
         addGestureRecognizer(clickRecog)
         
-        overlay.strokeColor = CGColor(red: 1, green: 0, blue: 0, alpha: 1)
-        overlay.borderColor = CGColor(red: 1, green: 0, blue: 0, alpha: 1)
+        overlay.strokeColor = frameColor.value
+        overlay.borderColor = frameColor.value
         overlay.zPosition = 0.001
         overlay.bounds = CGRect(x: 0, y: 0, width: 0, height: 0)
         self.layer!.addSublayer(overlay)
@@ -68,7 +69,8 @@ class DropImageView : NSView {
                       onImageLoaded
                         .do(onNext: { _ in welf?.layer?.sublayerTransform = CATransform3DIdentity })
                         .withLatestFrom(trimRect),
-                      onResize.withLatestFrom(trimRect))
+                      onResize.withLatestFrom(trimRect),
+                      frameColor.withLatestFrom(trimRect))
             .merge()
             .subscribe(onNext: { x, y, width, height in
                 welf?.drawRect(x: x, y: y, width: width, height: height)
@@ -196,6 +198,9 @@ class DropImageView : NSView {
             return
         }
         overlay.isHidden = false
+        
+        overlay.strokeColor = self.frameColor.value
+        overlay.borderColor = self.frameColor.value
         
         let (scale, imageOrigin) = self.getScaleAndImageOrigin(imageSize: imageSize)
         

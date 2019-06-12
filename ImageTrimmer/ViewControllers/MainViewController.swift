@@ -7,6 +7,12 @@ class MainViewController: NSViewController {
 
     private let disposeBag = DisposeBag()
     
+    @IBOutlet weak var frameRedButton: NSBox!
+    @IBOutlet weak var frameGreenButton: NSBox!
+    @IBOutlet weak var frameWhiteButton: NSBox!
+    @IBOutlet weak var frameBlackButton: NSBox!
+    private let frameColor = BehaviorRelay<NSColor>(value: NSColor.red)
+    
     @IBOutlet weak var imageView: DropImageView!
     @IBOutlet weak var previewImageView: NSImageView!
     
@@ -87,7 +93,20 @@ class MainViewController: NSViewController {
         positiveDirectoryField.dropDelegate = self
         negativeDirectoryField.dropDelegate = self
         
+        for view in [frameRedButton, frameGreenButton, frameWhiteButton, frameBlackButton] {
+            let recog = NSClickGestureRecognizer(target: self,
+                                                 action: #selector(onClickFrameColor))
+            view?.addGestureRecognizer(recog)
+        }
+        
         setupRx()
+    }
+    
+    @objc func onClickFrameColor(_ sender: NSClickGestureRecognizer) {
+        guard let color = sender.view?.layer?.sublayers?.compactMap({ $0.backgroundColor }).first else {
+            return
+        }
+        imageView.frameColor.accept(color)
     }
     
     private func trimImage(x: Int, y: Int, width: Int, height: Int) -> NSImage? {
