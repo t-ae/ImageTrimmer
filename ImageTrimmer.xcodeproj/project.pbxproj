@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,19 +16,14 @@
 		A70A40301DB5BF9E00F5441A /* BlockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70A402F1DB5BF9E00F5441A /* BlockView.xib */; };
 		A70A40751DB867A300F5441A /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A40731DB867A300F5441A /* Keys.swift */; };
 		A70A40761DB867A300F5441A /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A40741DB867A300F5441A /* Util.swift */; };
-		A72709351DDAF21E0077C1D8 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A727092E1DDAF2050077C1D8 /* RxCocoa.framework */; };
-		A72709361DDAF21E0077C1D8 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A727092E1DDAF2050077C1D8 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A72709371DDAF21E0077C1D8 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A727092F1DDAF2050077C1D8 /* RxSwift.framework */; };
-		A72709381DDAF21E0077C1D8 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A727092F1DDAF2050077C1D8 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A77FD48A1DAF5A420003E9A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FD4891DAF5A420003E9A3 /* AppDelegate.swift */; };
 		A77FD48E1DAF5A420003E9A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A77FD48D1DAF5A420003E9A3 /* Assets.xcassets */; };
 		A77FD4911DAF5A420003E9A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A77FD48F1DAF5A420003E9A3 /* Main.storyboard */; };
 		A77FD49C1DAF5A420003E9A3 /* ImageTrimmerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FD49B1DAF5A420003E9A3 /* ImageTrimmerTests.swift */; };
 		A77FD4A71DAF5A420003E9A3 /* ImageTrimmerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FD4A61DAF5A420003E9A3 /* ImageTrimmerUITests.swift */; };
-		A78FFF8521783CC5008ED8C6 /* Swim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A78FFF8421783CC5008ED8C6 /* Swim.framework */; };
-		A78FFF8721783CCA008ED8C6 /* Swim.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A78FFF8421783CC5008ED8C6 /* Swim.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A78FFF8921783CEE008ED8C6 /* CStbImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A78FFF8821783CEE008ED8C6 /* CStbImage.framework */; };
-		A78FFF8B21783CF3008ED8C6 /* CStbImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A78FFF8821783CEE008ED8C6 /* CStbImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A7A8B3E222B0E8A5004B5238 /* Swim in Frameworks */ = {isa = PBXBuildFile; productRef = A7A8B3E122B0E8A5004B5238 /* Swim */; };
+		A7A8B3E522B0E906004B5238 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A7A8B3E422B0E906004B5238 /* RxSwift */; };
+		A7A8B3E722B0E906004B5238 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A7A8B3E622B0E906004B5238 /* RxCocoa */; };
 		A7F196771DBD97260007B51A /* ScalableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F196761DBD97260007B51A /* ScalableImageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,10 +51,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A72709361DDAF21E0077C1D8 /* RxCocoa.framework in Embed Frameworks */,
-				A78FFF8721783CCA008ED8C6 /* Swim.framework in Embed Frameworks */,
-				A78FFF8B21783CF3008ED8C6 /* CStbImage.framework in Embed Frameworks */,
-				A72709381DDAF21E0077C1D8 /* RxSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,8 +67,6 @@
 		A70A402F1DB5BF9E00F5441A /* BlockView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BlockView.xib; sourceTree = "<group>"; };
 		A70A40731DB867A300F5441A /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		A70A40741DB867A300F5441A /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
-		A727092E1DDAF2050077C1D8 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = "../../../../../../../../Desktop/t-ae/ImageTrimmer/Carthage/Build/Mac/RxCocoa.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A727092F1DDAF2050077C1D8 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = "../../../../../../../../Desktop/t-ae/ImageTrimmer/Carthage/Build/Mac/RxSwift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A77FD4861DAF5A420003E9A3 /* ImageTrimmer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageTrimmer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A77FD4891DAF5A420003E9A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A77FD48D1DAF5A420003E9A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,8 +78,6 @@
 		A77FD4A21DAF5A420003E9A3 /* ImageTrimmerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageTrimmerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A77FD4A61DAF5A420003E9A3 /* ImageTrimmerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTrimmerUITests.swift; sourceTree = "<group>"; };
 		A77FD4A81DAF5A420003E9A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A78FFF8421783CC5008ED8C6 /* Swim.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swim.framework; path = Carthage/Build/Mac/Swim.framework; sourceTree = "<group>"; };
-		A78FFF8821783CEE008ED8C6 /* CStbImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CStbImage.framework; path = Carthage/Build/Mac/CStbImage.framework; sourceTree = "<group>"; };
 		A7F196761DBD97260007B51A /* ScalableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalableImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,10 +86,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A78FFF8921783CEE008ED8C6 /* CStbImage.framework in Frameworks */,
-				A78FFF8521783CC5008ED8C6 /* Swim.framework in Frameworks */,
-				A72709351DDAF21E0077C1D8 /* RxCocoa.framework in Frameworks */,
-				A72709371DDAF21E0077C1D8 /* RxSwift.framework in Frameworks */,
+				A7A8B3E722B0E906004B5238 /* RxCocoa in Frameworks */,
+				A7A8B3E522B0E906004B5238 /* RxSwift in Frameworks */,
+				A7A8B3E222B0E8A5004B5238 /* Swim in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,17 +131,6 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		A70A40331DB6177C00F5441A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A78FFF8821783CEE008ED8C6 /* CStbImage.framework */,
-				A78FFF8421783CC5008ED8C6 /* Swim.framework */,
-				A727092E1DDAF2050077C1D8 /* RxCocoa.framework */,
-				A727092F1DDAF2050077C1D8 /* RxSwift.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		A70A40721DB867A300F5441A /* etc */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,7 +143,6 @@
 		A77FD47D1DAF5A410003E9A3 = {
 			isa = PBXGroup;
 			children = (
-				A70A40331DB6177C00F5441A /* Frameworks */,
 				A77FD4881DAF5A420003E9A3 /* ImageTrimmer */,
 				A77FD49A1DAF5A420003E9A3 /* ImageTrimmerTests */,
 				A77FD4A51DAF5A420003E9A3 /* ImageTrimmerUITests */,
@@ -235,6 +209,11 @@
 			dependencies = (
 			);
 			name = ImageTrimmer;
+			packageProductDependencies = (
+				A7A8B3E122B0E8A5004B5238 /* Swim */,
+				A7A8B3E422B0E906004B5238 /* RxSwift */,
+				A7A8B3E622B0E906004B5238 /* RxCocoa */,
+			);
 			productName = ImageTrimmer;
 			productReference = A77FD4861DAF5A420003E9A3 /* ImageTrimmer.app */;
 			productType = "com.apple.product-type.application";
@@ -309,10 +288,15 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
 			mainGroup = A77FD47D1DAF5A410003E9A3;
+			packageReferences = (
+				A7A8B3E022B0E8A5004B5238 /* XCRemoteSwiftPackageReference "swim" */,
+				A7A8B3E322B0E906004B5238 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = A77FD4871DAF5A420003E9A3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -459,7 +443,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -501,8 +485,9 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -519,7 +504,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = ImageTrimmer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.qoncept.ImageTrimmer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -541,7 +529,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = ImageTrimmer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.qoncept.ImageTrimmer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -557,7 +548,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = AX6P4U3X2R;
 				INFOPLIST_FILE = ImageTrimmerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.qoncept.ImageTrimmerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ImageTrimmer.app/Contents/MacOS/ImageTrimmer";
@@ -572,7 +567,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = AX6P4U3X2R;
 				INFOPLIST_FILE = ImageTrimmerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.qoncept.ImageTrimmerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ImageTrimmer.app/Contents/MacOS/ImageTrimmer";
@@ -586,7 +585,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = AX6P4U3X2R;
 				INFOPLIST_FILE = ImageTrimmerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.qoncept.ImageTrimmerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = ImageTrimmer;
@@ -600,7 +603,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = AX6P4U3X2R;
 				INFOPLIST_FILE = ImageTrimmerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.qoncept.ImageTrimmerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = ImageTrimmer;
@@ -647,6 +654,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A7A8B3E022B0E8A5004B5238 /* XCRemoteSwiftPackageReference "swim" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/t-ae/swim.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
+		A7A8B3E322B0E906004B5238 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A7A8B3E122B0E8A5004B5238 /* Swim */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A7A8B3E022B0E8A5004B5238 /* XCRemoteSwiftPackageReference "swim" */;
+			productName = Swim;
+		};
+		A7A8B3E422B0E906004B5238 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A7A8B3E322B0E906004B5238 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		A7A8B3E622B0E906004B5238 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A7A8B3E322B0E906004B5238 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A77FD47E1DAF5A410003E9A3 /* Project object */;
 }
