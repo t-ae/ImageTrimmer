@@ -124,8 +124,8 @@ extension Optional: OptionalType {
     typealias WrappedElement = Wrapped
 }
 
-extension ObservableType where E: OptionalType {
-    func filterNil() -> Observable<E.WrappedElement> {
+extension ObservableType where Element: OptionalType {
+    func filterNil() -> Observable<Element.WrappedElement> {
         return self.flatMap { $0.map { Observable.just($0) } ?? Observable.empty() }
     }
 }

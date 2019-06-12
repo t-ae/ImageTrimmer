@@ -11,18 +11,18 @@ class MainViewController: NSViewController {
     @IBOutlet weak var previewImageView: NSImageView!
     
     // position
-    private let x = Variable<Int>(0)
+    private let x = BehaviorRelay<Int>(value: 0)
     @IBOutlet weak var xField: NSTextField!
     @IBOutlet weak var xStepper: NSStepper!
-    private let y = Variable<Int>(0)
+    private let y = BehaviorRelay<Int>(value: 0)
     @IBOutlet weak var yField: NSTextField!
     @IBOutlet weak var yStepper: NSStepper!
     
     // size
-    private let width = Variable<Int>(30)
+    private let width = BehaviorRelay<Int>(value: 30)
     @IBOutlet weak var widthField: NSTextField!
     @IBOutlet weak var widthStepper: NSStepper!
-    private let height = Variable<Int>(30)
+    private let height = BehaviorRelay<Int>(value: 30)
     @IBOutlet weak var heightField: NSTextField!
     @IBOutlet weak var heightStepper: NSStepper!
     
@@ -31,9 +31,9 @@ class MainViewController: NSViewController {
     @IBOutlet weak var negativeDirectoryField: DropTextField!
     
     // file No.
-    private let positiveFileNumber = Variable<Int>(0)
+    private let positiveFileNumber = BehaviorRelay<Int>(value: 0)
     @IBOutlet weak var positiveFileNameField: NSTextField!
-    private let negativeFileNumber = Variable<Int>(0)
+    private let negativeFileNumber = BehaviorRelay<Int>(value: 0)
     @IBOutlet weak var negativeFileNameField: NSTextField!
     
     override func viewDidLoad() {
@@ -43,11 +43,11 @@ class MainViewController: NSViewController {
             let ud = UserDefaults.standard
             let w = ud.integer(forKey: Keys.UserDefaults.widthKey)
             if w > 0 {
-                self.width.value = w
+                self.width.accept(w)
             }
             let h = ud.integer(forKey: Keys.UserDefaults.heightKey)
             if h > 0 {
-                self.height.value = h
+                self.height.accept(h)
             }
         }
         
@@ -59,24 +59,24 @@ class MainViewController: NSViewController {
             if ev.modifierFlags.contains(NSEvent.ModifierFlags.command) {
                 switch char {
                 case Character(UnicodeScalar(NSUpArrowFunctionKey)!):
-                    self.width.value += 1
-                    self.height.value += 1
+                    self.width.accept(self.width.value + 1)
+                    self.height.accept(self.height.value + 1)
                 case Character(UnicodeScalar(NSDownArrowFunctionKey)!):
-                    self.width.value -= 1
-                    self.height.value -= 1
+                    self.width.accept(self.width.value - 1)
+                    self.height.accept(self.height.value - 1)
                 default:
                     break
                 }
             } else {
                 switch char {
                 case Character(UnicodeScalar(NSUpArrowFunctionKey)!):
-                    self.y.value -= 1
+                    self.y.accept(self.y.value - 1)
                 case Character(UnicodeScalar(NSDownArrowFunctionKey)!):
-                    self.y.value += 1
+                    self.y.accept(self.y.value + 1)
                 case Character(UnicodeScalar(NSLeftArrowFunctionKey)!):
-                    self.x.value -= 1
+                    self.x.accept(self.x.value - 1)
                 case Character(UnicodeScalar(NSRightArrowFunctionKey)!):
-                    self.x.value += 1
+                    self.x.accept(self.x.value + 1)
                 default:
                     break
                 }
@@ -140,9 +140,9 @@ class MainViewController: NSViewController {
         if let maxFileNo = maxFileNo {
             switch field {
             case positiveDirectoryField:
-                positiveFileNumber.value = maxFileNo + 1
+                positiveFileNumber.accept(maxFileNo + 1)
             case negativeDirectoryField:
-                negativeFileNumber.value = maxFileNo + 1
+                negativeFileNumber.accept(maxFileNo + 1)
             default:
                 break
             }
@@ -162,7 +162,7 @@ class MainViewController: NSViewController {
         }
         
         if saveImage(image: image, directory: directory, fileNumber: positiveFileNumber.value) {
-            positiveFileNumber.value += 1
+            positiveFileNumber.accept(positiveFileNumber.value + 1)
         }
     }
     
@@ -179,7 +179,7 @@ class MainViewController: NSViewController {
         }
         
         if saveImage(image: image, directory: directory, fileNumber: negativeFileNumber.value) {
-            negativeFileNumber.value += 1
+            negativeFileNumber.accept(negativeFileNumber.value + 1)
         }
     }
     
@@ -372,8 +372,8 @@ extension MainViewController {
                 welf?.view.window?.makeFirstResponder(nil)
             })
             .subscribe(onNext: { x, y in
-                welf?.x.value = x
-                welf?.y.value = y
+                welf?.x.accept(x)
+                welf?.y.accept(y)
             })
             .disposed(by: disposeBag)
     }

@@ -1,14 +1,15 @@
 import Foundation
 import Cocoa
 import RxSwift
+import RxCocoa
 import Swim
 
 class TrimViewController: NSViewController {
     
     private(set) var image: Image<RGBA, UInt8>!
     
-    private(set) var x: Variable<Int>!
-    private(set) var y: Variable<Int>!
+    private(set) var x: BehaviorRelay<Int>!
+    private(set) var y: BehaviorRelay<Int>!
     
     private(set) var width: Int!
     private(set) var height: Int!
@@ -16,22 +17,22 @@ class TrimViewController: NSViewController {
     private(set) var positiveDirectory: String!
     private(set) var negativeDirectory: String!
     
-    private(set) var positiveFileNumber: Variable<Int>!
-    private(set) var negativeFileNumber: Variable<Int>!
+    private(set) var positiveFileNumber: BehaviorRelay<Int>!
+    private(set) var negativeFileNumber: BehaviorRelay<Int>!
     
     override func viewDidDisappear() {
         NSApplication.shared.stopModal()
     }
     
     func bind(image: Image<RGBA, UInt8>!,
-              x: Variable<Int>,
-              y: Variable<Int>,
+              x: BehaviorRelay<Int>,
+              y: BehaviorRelay<Int>,
               width: Int,
               height: Int,
               positiveDirectory: String,
               negativeDirectory: String,
-              positiveFileNumber: Variable<Int>,
-              negativeFileNumber: Variable<Int>) {
+              positiveFileNumber: BehaviorRelay<Int>,
+              negativeFileNumber: BehaviorRelay<Int>) {
         
         self.image = image
         self.x = x
@@ -42,6 +43,5 @@ class TrimViewController: NSViewController {
         self.negativeDirectory = negativeDirectory
         self.positiveFileNumber = positiveFileNumber
         self.negativeFileNumber = negativeFileNumber
-        
     }
 }

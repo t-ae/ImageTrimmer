@@ -1,6 +1,7 @@
 import Foundation
 import Cocoa
 import RxSwift
+import RxCocoa
 import Swim
 
 class RandomTrimViewController : TrimViewController {
@@ -8,14 +9,14 @@ class RandomTrimViewController : TrimViewController {
     @IBOutlet weak var imageView: NSImageView!
     
     override func bind(image: Image<RGBA, UInt8>!,
-                       x: Variable<Int>,
-                       y: Variable<Int>,
+                       x: BehaviorRelay<Int>,
+                       y: BehaviorRelay<Int>,
                        width: Int,
                        height: Int,
                        positiveDirectory: String,
                        negativeDirectory: String,
-                       positiveFileNumber: Variable<Int>,
-                       negativeFileNumber: Variable<Int>) {
+                       positiveFileNumber: BehaviorRelay<Int>,
+                       negativeFileNumber: BehaviorRelay<Int>) {
         
         super.bind(image: image,
                    x: x,
@@ -41,14 +42,14 @@ class RandomTrimViewController : TrimViewController {
         let trimmed = image[x..<x+width, y..<y+height]
         
         imageView.image = trimmed.nsImage()
-        self.x.value = x
-        self.y.value = y
+        self.x.accept(x)
+        self.y.accept(y)
     }
     
     @IBAction func onPressPosiiveButton(_ sender: AnyObject) {
         let number = positiveFileNumber.value
         if saveImage(image: imageView.image!, directory: positiveDirectory, fileNumber: number) {
-            positiveFileNumber.value += 1
+            positiveFileNumber.accept(positiveFileNumber.value + 1)
             trimRandomly()
         }
     }
@@ -57,7 +58,7 @@ class RandomTrimViewController : TrimViewController {
         let number = negativeFileNumber.value
         
         if saveImage(image: imageView.image!, directory: negativeDirectory, fileNumber: number) {
-            negativeFileNumber.value += 1
+            negativeFileNumber.accept(negativeFileNumber.value + 1)
             trimRandomly()
         }
     }
