@@ -280,13 +280,13 @@ extension MainViewController {
         // variable to control
         x.asObservable()
             .subscribe(onNext: { x in
-                welf?.xField.integerValue = x
+                welf?.xField.stringValue = "\(x)"
                 welf?.xStepper.integerValue = x
             })
             .disposed(by: disposeBag)
         y.asObservable()
             .subscribe(onNext: { y in
-                welf?.yField.integerValue = y
+                welf?.yField.stringValue = "\(y)"
                 welf?.yStepper.integerValue = y
             })
             .disposed(by: disposeBag)
@@ -295,7 +295,7 @@ extension MainViewController {
                 let ud = UserDefaults.standard
                 ud.set(w, forKey: Keys.UserDefaults.widthKey)
                 
-                welf?.widthField.integerValue = w
+                welf?.widthField.stringValue = "\(w)"
                 welf?.widthStepper.integerValue = w
             })
             .disposed(by: disposeBag)
@@ -304,7 +304,7 @@ extension MainViewController {
                 let ud = UserDefaults.standard
                 ud.set(h, forKey: Keys.UserDefaults.heightKey)
                 
-                welf?.heightField.integerValue = h
+                welf?.heightField.stringValue = "\(h)"
                 welf?.heightStepper.integerValue = h
             })
             .disposed(by: disposeBag)
