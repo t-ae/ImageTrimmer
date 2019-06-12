@@ -319,12 +319,10 @@ extension MainViewController {
         
         // control to variable
         xField.rx.text
-            .filterNil()
             .flatMap(strToObservableInt)
             .bind(to: x)
             .disposed(by: disposeBag)
         yField.rx.text
-            .filterNil()
             .flatMap(strToObservableInt)
             .bind(to: y)
             .disposed(by: disposeBag)
@@ -338,12 +336,10 @@ extension MainViewController {
             .disposed(by: disposeBag)
         
         widthField.rx.text
-            .filterNil()
             .flatMap(strToObservableInt)
             .bind(to: width)
             .disposed(by: disposeBag)
         heightField.rx.text
-            .filterNil()
             .flatMap(strToObservableInt)
             .bind(to: height)
             .disposed(by: disposeBag)
@@ -357,12 +353,10 @@ extension MainViewController {
             .disposed(by: disposeBag)
         
         positiveFileNameField.rx.text
-            .filterNil()
             .flatMap(strToObservableInt)
             .bind(to: positiveFileNumber)
             .disposed(by: disposeBag)
         negativeFileNameField.rx.text
-            .filterNil()
             .flatMap(strToObservableInt)
             .bind(to: negativeFileNumber)
             .disposed(by: disposeBag)
