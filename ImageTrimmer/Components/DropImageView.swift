@@ -76,6 +76,10 @@ class DropImageView : NSView {
                 welf?.drawRect(x: x, y: y, width: width, height: height)
             })
             .disposed(by: disposeBag)
+        
+        onImageLoaded.subscribe(onNext: { _ in
+            welf?.setProperFrameWidth()
+        }).disposed(by: disposeBag)
     }
     
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
@@ -111,14 +115,7 @@ class DropImageView : NSView {
         
         self.swimImage = Image<RGBA, UInt8>(nsImage: image)
         
-        let (scale, _) = getScaleAndImageOrigin(imageSize: image.size)
-        if scale > 1 {
-            overlay.borderWidth = 0.5
-            overlay.lineWidth = 0.5
-        } else {
-            overlay.borderWidth = scale * 3
-            overlay.lineWidth = scale * 3
-        }
+        setProperFrameWidth()
         
         _onImageLoaded.onNext(file)
         
@@ -141,6 +138,16 @@ class DropImageView : NSView {
     
     override func scrollWheel(with event: NSEvent) {
         self.layer!.sublayerTransform *= CATransform3DMakeTranslation(event.deltaX, event.deltaY, 0)
+    }
+    
+    private func setProperFrameWidth() {
+        let viewScale = self.layer!.sublayerTransform.m11
+        
+        CATransaction.begin()
+        CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
+        overlay.borderWidth = 1 / viewScale
+        overlay.lineWidth = 1 / viewScale
+        CATransaction.commit()
     }
     
     private func selectPoint(location: CGPoint) {
@@ -167,6 +174,8 @@ class DropImageView : NSView {
         self.layer!.sublayerTransform *= CATransform3DMakeTranslation(-move.x, -move.y, 0)
         
         recognizer.magnification = 0
+        
+        setProperFrameWidth()
     }
 
     
