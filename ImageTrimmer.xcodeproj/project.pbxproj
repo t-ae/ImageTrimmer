@@ -10,10 +10,8 @@
 		A70A40221DB5B93500F5441A /* RandomTrimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A401F1DB5B93500F5441A /* RandomTrimViewController.swift */; };
 		A70A40231DB5B93500F5441A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A40201DB5B93500F5441A /* MainViewController.swift */; };
 		A70A40251DB5B97F00F5441A /* TrimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A40241DB5B97F00F5441A /* TrimViewController.swift */; };
-		A70A402C1DB5BF9500F5441A /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A40291DB5BF9500F5441A /* BlockView.swift */; };
 		A70A402D1DB5BF9500F5441A /* DropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A402A1DB5BF9500F5441A /* DropImageView.swift */; };
 		A70A402E1DB5BF9500F5441A /* DropTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A402B1DB5BF9500F5441A /* DropTextField.swift */; };
-		A70A40301DB5BF9E00F5441A /* BlockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A70A402F1DB5BF9E00F5441A /* BlockView.xib */; };
 		A70A40751DB867A300F5441A /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A40731DB867A300F5441A /* Keys.swift */; };
 		A70A40761DB867A300F5441A /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A40741DB867A300F5441A /* Util.swift */; };
 		A77FD48A1DAF5A420003E9A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FD4891DAF5A420003E9A3 /* AppDelegate.swift */; };
@@ -61,10 +59,8 @@
 		A70A401F1DB5B93500F5441A /* RandomTrimViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomTrimViewController.swift; sourceTree = "<group>"; };
 		A70A40201DB5B93500F5441A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A70A40241DB5B97F00F5441A /* TrimViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrimViewController.swift; sourceTree = "<group>"; };
-		A70A40291DB5BF9500F5441A /* BlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
 		A70A402A1DB5BF9500F5441A /* DropImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropImageView.swift; sourceTree = "<group>"; };
 		A70A402B1DB5BF9500F5441A /* DropTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropTextField.swift; sourceTree = "<group>"; };
-		A70A402F1DB5BF9E00F5441A /* BlockView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BlockView.xib; sourceTree = "<group>"; };
 		A70A40731DB867A300F5441A /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		A70A40741DB867A300F5441A /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		A77FD4861DAF5A420003E9A3 /* ImageTrimmer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageTrimmer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,8 +118,6 @@
 		A70A40281DB5BF9500F5441A /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				A70A40291DB5BF9500F5441A /* BlockView.swift */,
-				A70A402F1DB5BF9E00F5441A /* BlockView.xib */,
 				A7F196761DBD97260007B51A /* ScalableImageView.swift */,
 				A70A402A1DB5BF9500F5441A /* DropImageView.swift */,
 				A70A402B1DB5BF9500F5441A /* DropTextField.swift */,
@@ -314,7 +308,6 @@
 			files = (
 				A77FD48E1DAF5A420003E9A3 /* Assets.xcassets in Resources */,
 				A77FD4911DAF5A420003E9A3 /* Main.storyboard in Resources */,
-				A70A40301DB5BF9E00F5441A /* BlockView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,7 +336,6 @@
 				A77FD48A1DAF5A420003E9A3 /* AppDelegate.swift in Sources */,
 				A70A40231DB5B93500F5441A /* MainViewController.swift in Sources */,
 				A70A40751DB867A300F5441A /* Keys.swift in Sources */,
-				A70A402C1DB5BF9500F5441A /* BlockView.swift in Sources */,
 				A70A40761DB867A300F5441A /* Util.swift in Sources */,
 				A70A40251DB5B97F00F5441A /* TrimViewController.swift in Sources */,
 				A7F196771DBD97260007B51A /* ScalableImageView.swift in Sources */,
