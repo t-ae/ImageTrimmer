@@ -3,7 +3,7 @@ Image trimming tool for Machine Learning.
 
 For trimming numerous, fixed size images from one image.
 
-Xcode11 beta / Swift5.0 / OSX
+Xcode11 / Swift5.1 / macOS
 
 Currently, it's specialized for binary classification.
 
